@@ -2,7 +2,6 @@ sudo: false
 language: android
 
 jdk:
-    - oraclejdk7
     - oraclejdk8
 
 android:
@@ -17,4 +16,3 @@ android:
 
 script:
     - TERM=dumb ./gradlew -i test check coveralls
-
