@@ -13,7 +13,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 }
+apply plugin: 'com.noveogroup.android.check'
 
+check {
+    abortOnError true
+    checkstyle { config easy() }
+    findbugs { config easy() }
+//    pmd { config easy() }
+}
 dependencies {
     testCompile "junit:junit:4.10"
     testCompile "org.assertj:assertj-core:1.7.0"

@@ -55,15 +55,15 @@ public class LoginActivity extends Activity {
 
         if (validEmail && validPwd) {
             showProgress(true);
-            loginUser(mEmailView.getText().toString(),mPasswordView.getText().toString());
+            loginUser(mEmailView.getText().toString(), mPasswordView.getText().toString());
         }
     }
 
-    private void loginUser(String email,String password) {
+    private void loginUser(String email, String password) {
         for (String credential : DUMMY_CREDENTIALS) {
             String[] pieces = credential.split(":");
-            if (pieces[0].equals(email) && pieces[1].equals(password)){
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            if (pieces[0].equals(email) && pieces[1].equals(password)) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 return;
@@ -88,7 +88,7 @@ public class LoginActivity extends Activity {
         return true;
     }
 
-    private boolean isEmpty(TextView textView){
+    private boolean isEmpty(TextView textView) {
         String text = textView.getText().toString();
         return TextUtils.isEmpty(text);
     }
@@ -98,8 +98,8 @@ public class LoginActivity extends Activity {
         mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
-    private void setErrorMessageAndRequestFocus(TextView textView,String errorMessage){
-        textView.setError(Html.fromHtml("<font color='red'>"+errorMessage+"</font>"));
+    private void setErrorMessageAndRequestFocus(TextView textView, String errorMessage) {
+        textView.setError(Html.fromHtml("<font color='red'>" + errorMessage + "</font>"));
         textView.requestFocus();
     }
 }

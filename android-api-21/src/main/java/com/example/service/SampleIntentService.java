@@ -15,7 +15,7 @@ public class SampleIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(
                 "example", Context.MODE_PRIVATE).edit();
-        editor.putString("SAMPLE_DATA","sample data");
+        editor.putString("SAMPLE_DATA", "sample data");
         editor.apply();
     }
 }

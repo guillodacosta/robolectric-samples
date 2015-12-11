@@ -21,15 +21,15 @@ import static org.robolectric.Shadows.shadowOf;
 public class AlarmManagerReceiverTest {
 
     @Test
-    public void startServiceForTheScheduledAlarm(){
+    public void startServiceForTheScheduledAlarm() {
         Application application = RuntimeEnvironment.application;
         Intent expectedService = new Intent(application, SampleIntentService.class);
         AlarmManagerReceiver alarmManagerReceiver = new AlarmManagerReceiver();
         alarmManagerReceiver.onReceive(application, new Intent());
 
         Intent serviceIntent = shadowOf(application).getNextStartedService();
-        assertNotNull(serviceIntent);
-        assertEquals(serviceIntent.getComponent(),
+        assertNotNull("Service started ",serviceIntent);
+        assertEquals("Started service class ", serviceIntent.getComponent(),
                 expectedService.getComponent());
     }
 }
