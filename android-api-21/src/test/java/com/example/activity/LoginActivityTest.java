@@ -1,15 +1,8 @@
 package com.example.activity;
 
 import android.app.Activity;
-import android.app.Application;
-import android.app.MediaRouteButton;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.BuildConfig;
 import com.example.R;
@@ -22,14 +15,9 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowApplication;
-import org.robolectric.shadows.ShadowLog;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
-import static junit.framework.Assert.assertTrue;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.not;
-import static org.hamcrest.core.Is.is;
 import static org.robolectric.Shadows.shadowOf;
 
 @RunWith(RobolectricGradleTestRunner.class)
@@ -77,7 +65,5 @@ public class LoginActivityTest {
         assertNull(application.getNextStartedActivity());
         assertNotNull(textView.getError());
         assertNotNull(passwordView.getError());
-        View progressView = activity.findViewById(R.id.login_progress);
-        assertTrue(progressView.getVisibility() == View.GONE);
     }
 }
