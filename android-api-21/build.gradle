@@ -13,9 +13,70 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 }
+apply plugin: 'com.noveogroup.android.check'
+apply plugin: "jacoco"
+apply plugin: 'com.github.kt3k.coveralls'
+
+
+check {
+    abortOnError true
+}
 
 dependencies {
     testCompile "junit:junit:4.10"
     testCompile "org.assertj:assertj-core:1.7.0"
     testCompile "org.robolectric:robolectric:${robolectricVersion}"
+}
+
+jacoco {
+    toolVersion = "0.7.0.201403182114"
+}
+
+jacoco {
+    toolVersion "0.7.1.201405082137"
+}
+
+// Define coverage source.
+// If you have rs/aidl etc... add them here.
+def coverageSourceDirs = [
+        'src/main/java',
+]
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebug") {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    classDirectories = fileTree(
+            dir: './build/intermediates/classes/debug',
+            excludes: ['**/R*.class',
+                       '**/*$InjectAdapter.class',
+                       '**/*$ModuleAdapter.class',
+                       '**/*$ViewInjector*.class'
+            ])
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files("$buildDir/jacoco/testDebug.exec")
+    // Bit hacky but fixes https://code.google.com/p/android/issues/detail?id=69174.
+    // We iterate through the compiled .class tree and rename $$ to $.
+    doFirst {
+        new File("$buildDir/intermediates/classes/").eachFileRecurse { file ->
+            if (file.name.contains('$$')) {
+                file.renameTo(file.path.replace('$$', '$'))
+            }
+        }
+    }
+}
+
+//tasks.jacocoTestReport.dependsOn tasks.configureCoverageReport
+//tasks.coveralls.dependsOn tasks.configureCoverageReport
+
+
+tasks.coveralls {
+    group = 'Coverage reports'
+    description = 'Uploads the aggregated coverage report to Coveralls'
+
+    dependsOn jacocoTestReport
+    onlyIf { System.env.'CI' }
 }

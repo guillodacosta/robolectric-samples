@@ -20,7 +20,7 @@ import static org.robolectric.Shadows.shadowOf;
 public class MainActivityTest {
 
   @Test
-  public void onCreate_shouldInflateTheMenu() throws Exception {
+  public void onCreateShouldInflateTheMenu() {
     Activity activity = Robolectric.setupActivity(MainActivity.class);
 
     final Menu menu = shadowOf(activity).getOptionsMenu();
