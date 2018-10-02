@@ -48,7 +48,7 @@ public class LoginActivityTest {
     }
 
     @Test
-    @Config(sdk = ALL_SDKS)
+    // @Config(sdk = ALL_SDKS)
     public void loginSuccess() {
         emailView.setText("foo@example.com");
         passwordView.setText("foo");
@@ -59,7 +59,7 @@ public class LoginActivityTest {
     }
 
     @Test
-    @Config(sdk = {FROYO, KITKAT, LOLLIPOP}, qualifiers = "land")
+    @Config(sdk = {LOLLIPOP, M, O}, qualifiers = "land")
     public void loginWithEmptyUsernameAndPasswordOnSmall() {
         loginWithEmptyUsernameAndPassword();
         assertThat("", imageView, is(notNullValue()));

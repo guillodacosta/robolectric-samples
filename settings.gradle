@@ -1,4 +1,4 @@
-include ':android-api-21'
+include ':android-api-27'
 include ':android-appcompat-v7'
 include ':android-play-services'
 include ':android-flavors'
