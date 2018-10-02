@@ -1,8 +1,8 @@
 apply plugin: "com.android.application"
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.3'
 
     defaultConfig {
         applicationId "com.example"
@@ -12,7 +12,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_6
         targetCompatibility JavaVersion.VERSION_1_6
     }
-
+    flavorDimensions 'nothing'
     productFlavors {
         flavor1 {
             applicationId "com.example.red"
@@ -31,10 +31,16 @@ android {
             applicationIdSuffix ".release"
         }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
-    testCompile "junit:junit:4.10"
-    testCompile "org.assertj:assertj-core:1.7.0"
-    testCompile "org.robolectric:robolectric:${robolectricVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.assertj:assertj-core:1.7.0"
+    testImplementation "org.robolectric:robolectric:${robolectricVersion}"
 }

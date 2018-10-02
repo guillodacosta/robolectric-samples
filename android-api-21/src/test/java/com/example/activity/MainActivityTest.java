@@ -3,20 +3,18 @@ package com.example.activity;
 import android.app.Activity;
 import android.view.Menu;
 
-import com.example.BuildConfig;
+
 import com.example.R;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.annotation.Config;
+import org.robolectric.RobolectricTestRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.robolectric.Shadows.shadowOf;
 
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class)
+@RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
 
   @Test

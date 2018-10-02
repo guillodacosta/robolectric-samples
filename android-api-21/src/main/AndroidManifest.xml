@@ -8,7 +8,7 @@
         android:minSdkVersion="21"
         android:targetSdkVersion="21" />
 
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application android:theme="@style/Theme.MyTheme">
         <activity android:name=".activity.MainActivity">

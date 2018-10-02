@@ -1,8 +1,8 @@
 apply plugin: "com.android.application"
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion = 21
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.example"
@@ -11,6 +11,12 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 }
 apply plugin: 'com.noveogroup.android.check'
@@ -23,9 +29,9 @@ check {
 }
 
 dependencies {
-    testCompile "junit:junit:4.10"
-    testCompile "org.assertj:assertj-core:1.7.0"
-    testCompile "org.robolectric:robolectric:${robolectricVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.assertj:assertj-core:1.7.0"
+    testImplementation "org.robolectric:robolectric:${robolectricVersion}"
 }
 
 jacoco {
@@ -71,7 +77,6 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "testDebug") {
 
 //tasks.jacocoTestReport.dependsOn tasks.configureCoverageReport
 //tasks.coveralls.dependsOn tasks.configureCoverageReport
-
 
 tasks.coveralls {
     group = 'Coverage reports'
